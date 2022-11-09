@@ -7,7 +7,7 @@ from .utils import format_data
 
 
 class SeparateSearchAdmin(admin.ModelAdmin):
-    change_list_template = "admin/better_search/custom_change_list.html"
+    change_list_template = "admin/custom_change_list.html"
     advanced_search_fields = {}
     search_form_data = None
 
