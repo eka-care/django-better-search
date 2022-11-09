@@ -9,4 +9,31 @@ This app requires the following:
 * Django >= 3.2
 
 ## Usage
-This project is <b>not ready yet for any use</b>.
+
+<i>Note:</i> <b>This project is not yet ready for production use</b>.
+
+1) Create a search form to have search fields on your admin page. Example:
+
+```
+from django.forms import CharField, Form, IntegerField
+
+
+class UserSearchForm(Form):
+    name = CharField(required=False, label="User's Name", help_text="Some help_text")
+    age = IntegerField(required=False, label="User's Age", help_text="Another help_text")
+    ...
+```
+
+2) Use the search form in your AppAdmin in your `admin.py`. Example:
+
+```
+from django_separate_search.admin import SeparateSearchAdmin
+
+
+class UserAssessmentAdmin(SeparateSearchAdmin):
+    ...
+    search_form = UserSearchForm
+    ...
+```
+
+This will render your search-form fields on the listview admin page.
