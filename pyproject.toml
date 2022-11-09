@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django_better_search_ishail"
+version = "0.0.1"
+authors = [
+    {name="Shailesh Kumar", email="shailesh@eka.com"},
+]
+description = "A different implementation of Django's admin search"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/eka-care/django-better-search"
+"Bug Tracker" = "https://github.com/eka-care/django-better-search/issues"

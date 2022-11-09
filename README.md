@@ -7,3 +7,6 @@ This repo implements search on Django admin page differently. It generates diffe
 This app requires the following:
 
 * Django >= 3.2
+
+## Usage
+This project is <b>not ready yet for any use</b>.
