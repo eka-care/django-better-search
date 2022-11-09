@@ -1,0 +1,61 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls %}
+{% block search %}
+    {% if separate_search_fields %}
+        <form id="custom_search_toolbar" style="padding: 8px 10px;
+                margin-bottom: 15px;
+                border-top: 1px solid var(--hairline-color);
+                border-bottom: 1px solid var(--hairline-color);
+                background: var(--darkened-bg);
+                color: var(--body-quiet-color);">
+            <fieldset class="module aligned" style="margin-bottom: 5px;">
+                {% for field in separate_search_fields %}
+                    <div class="form-field field-{{field.name}}" style="padding: 10px;">
+                        <div>
+                            {% if field.is_checkbox %}
+                                {{field}}{{ field.label_tag }}
+                            {% else %}
+                                {{ field.label_tag }}
+                                {{field}}
+                            {% endif %}
+                            {% if field.field.help_text %}
+                                <div class="help">{{ field.field.help_text|safe }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <hr />
+                {% endfor %}
+            </fieldset>
+
+            <button id="submit_form" type="submit" class="form_submit_button">
+                {% block modal_search_button_text %}
+                    {% trans "filter"|title %}
+                {% endblock %}
+            </button>
+        </form>
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+<!-- Scripts -->
+{% block scripts %}
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script>
+        let searchParams = new URLSearchParams(window.location.search)
+
+        page = searchParams.get("p")
+        page = page == null ? 0 : ( $.isNumeric(page) ? parseInt(page) : 0 );
+
+        $("#custom_search_toolbar").submit(function() {
+            params = $("#custom_search_toolbar").serialize()
+
+            href = window.location.pathname
+            window.location.href = href + "?" + params;
+            return false;
+        });
+    </script>
+
+{% endblock %}
