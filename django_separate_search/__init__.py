@@ -1,1 +1,1 @@
-default_app_config = "django_better_search.apps.DjangoBetterSearchConfig"
+default_app_config = "django_separate_search.apps.DjangoSeparateSearchConfig"
