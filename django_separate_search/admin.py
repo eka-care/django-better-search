@@ -84,11 +84,11 @@ class SeparateSearchAdmin(admin.ModelAdmin):
                 messages.add_message(
                     request,
                     messages.ERROR,
-                    _(f"Filter in field `{field_name}` ignored, because value `{field_value}` isn't valid"),
+                    _(f"Filter in field '{field_name}' ignored, because value '{field_value}' isn't valid"),
                 )
             except Exception:  # pylint: disable=broad-except
                 messages.add_message(
-                    request, messages.ERROR, _(f"Filter in field `{field_name}` ignored, error has occurred.")
+                    request, messages.ERROR, _(f"Filter in field '{field_name}' ignored, error has occurred.")
                 )
 
         return Q()
