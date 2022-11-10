@@ -1,0 +1,1 @@
+include django_separate_search/templates/admin/*.html
