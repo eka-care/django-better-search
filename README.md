@@ -12,7 +12,17 @@ This app requires the following:
 
 <i>Note:</i> <b>This project is not yet ready for production use</b>.
 
-1) Create a search form to have search fields on your admin page. Example:
+1) Add `django_separate_search` in your `INSTALLED_APPS`. Example:
+
+```
+INSTALLED_APPS = [
+    ...
+    "django_separate_search",
+    ...
+]
+```
+
+2) Create a search form to have search fields on your admin page. Example:
 
 ```
 from django.forms import CharField, Form, IntegerField
@@ -24,7 +34,7 @@ class UserSearchForm(Form):
     ...
 ```
 
-2) Use the search form in your AppAdmin in your `admin.py`. Example:
+3) Use the search form in your AppAdmin in your `admin.py`. Example:
 
 ```
 from django_separate_search.admin import SeparateSearchAdmin
@@ -36,4 +46,4 @@ class UserAssessmentAdmin(SeparateSearchAdmin):
     ...
 ```
 
-This will render your search-form fields on the listview admin page.
+This will render your search-form fields on the list-view admin page.
