@@ -8,10 +8,19 @@
 This repo implements search on Django admin page differently. It generates different search boxes for separate fields and doesn't treat all of those fields as string.
 
 ## Requirements
+
 This app is tested using following:
 
 * Django >= 3.2
 * Python >= 3.9
+
+## Download
+
+This repo is published [on Pypi](https://pypi.org/project/django-better-search/). You can install it from there using following:
+
+```
+pip install django-better-search
+```
 
 ## Usage
 
