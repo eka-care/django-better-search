@@ -14,7 +14,7 @@ This app is tested using following:
 * Django >= 3.2
 * Python >= 3.9
 
-## Download
+## Installation
 
 This repo is published [on Pypi](https://pypi.org/project/django-better-search/). You can install it from there using following:
 
