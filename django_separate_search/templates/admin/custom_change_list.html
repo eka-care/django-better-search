@@ -1,5 +1,6 @@
 {% extends "admin/change_list.html" %}
 {% load i18n admin_urls %}
+{% load custom_paginator %}
 {% block search %}
     {% if separate_search_fields %}
         <form id="custom_search_toolbar" style="padding: 8px 10px;
@@ -36,6 +37,10 @@
     {% else %}
         {{ block.super }}
     {% endif %}
+{% endblock %}
+
+{% block pagination %}
+    {% custom_pagination cl %}
 {% endblock %}
 
 <!-- Scripts -->
