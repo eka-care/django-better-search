@@ -17,7 +17,10 @@ class SeparateSearchAdmin(admin.ModelAdmin):
             self.advanced_search_fields = {}
             self.extract_advanced_search_terms(request)
             self.search_form_data = self.search_form(initial=self.get_request_query_values(request))
-            extra_context = {"separate_search_fields": self.search_form_data}
+            extra_context = {
+                "separate_search_fields": self.search_form_data,
+                "query_params": self.get_request_query_values(request),
+            }
 
         return super().changelist_view(request, extra_context=extra_context)
 
