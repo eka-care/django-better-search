@@ -44,7 +44,9 @@
 {% endblock %}
 
 <!-- Scripts -->
-{% block scripts %}
+{% block footer %}
+    <div id="footer"></div>
+
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
@@ -58,9 +60,32 @@
             params = $("#custom_search_toolbar").serialize()
 
             href = window.location.pathname
-            window.location.href = href + "?" + params;
+            existing_search_params = window.location.search
+            if (existing_search_params == "") {
+                window.location.href = href + "?" + params;
+            } else {
+                const query_map = new Map();
+
+                var existing_params = new URLSearchParams(existing_search_params)
+                for (let p of existing_params) {
+                    query_map.set(p[0], p[1]);
+                }
+
+                param_pairs = params.split("&");
+                for (let i in param_pairs) {
+                    param_pair = param_pairs[i].split("=");
+                    query_map.set(param_pair[0], param_pair[1]);
+                }
+
+                let new_query_pairs = new Array();
+                query_map.forEach((value, key) => {
+                    new_query_pairs.push(key + "=" + value);
+                })
+
+                window.location.href = href + "?" + new_query_pairs.join("&");
+            }
+
             return false;
         });
     </script>
-
 {% endblock %}
