@@ -16,10 +16,10 @@ class SeparateSearchAdmin(admin.ModelAdmin):
         if hasattr(self, "search_form"):
             self.advanced_search_fields = {}
             self.extract_advanced_search_terms(request)
-            self.search_form_data = self.search_form(initial=self.get_request_query_values(request))
+            self.search_form_data = self.search_form(initial=self.get_request_custom_search_values(request))
             extra_context = {
                 "separate_search_fields": self.search_form_data,
-                "query_params": self.get_request_query_values(request),
+                "query_params": self.get_all_request_params(request),
             }
 
         return super().changelist_view(request, extra_context=extra_context)
@@ -114,7 +114,7 @@ class SeparateSearchAdmin(admin.ModelAdmin):
 
         return self.get_field_value_default(field, form_field, field_value, has_field_value, request)
 
-    def get_request_query_values(self, request):
+    def get_request_custom_search_values(self, request):
         resp = {}
         request_form_data = self.search_form(request.GET)
 
@@ -125,3 +125,12 @@ class SeparateSearchAdmin(admin.ModelAdmin):
                 resp = {**resp, **field_value_json}
 
         return resp
+
+    def get_all_request_params(self, request):
+        custom_search_params = self.get_request_custom_search_values(request)
+
+        resp = {}
+        for key in request.GET:
+            resp[key] = request.GET[key]
+
+        return custom_search_params | resp
