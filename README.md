@@ -26,8 +26,6 @@ pip install django-better-search
 
 ## Usage
 
-<i>Note:</i> <b>This project is not yet ready for production use</b>.
-
 1) Add `django_separate_search` in your `INSTALLED_APPS`. Example:
 
 ```
